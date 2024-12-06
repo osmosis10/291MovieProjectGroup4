@@ -809,7 +809,7 @@
             PostalCodeInput.Padding = new Padding(21, 15, 21, 15);
             PostalCodeInput.PasswordChar = false;
             PostalCodeInput.PlaceholderColor = Color.DarkGray;
-            PostalCodeInput.PlaceholderText = "T1T 1T1";
+            PostalCodeInput.PlaceholderText = "T1T1T1";
             PostalCodeInput.Size = new Size(434, 51);
             PostalCodeInput.TabIndex = 22;
             PostalCodeInput.UnderlinedStyle = false;
