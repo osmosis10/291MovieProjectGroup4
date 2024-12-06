@@ -14,6 +14,8 @@ using System.Configuration;
 using System.Drawing.Text;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 using System.Text.RegularExpressions;
+using System.Net.Mail;
+using System.Net;
 
 namespace movieRental
 {
@@ -103,18 +105,32 @@ namespace movieRental
                     {
                         connection.Open();
 
-                        string getCidQuery = "SELECT CID FROM Customer WHERE AccountNumber = @accountNumber";
+                        string updateCustomer = "UPDATE Customer SET FirstName=@firstName, FamilyName=@lastName, Address=@address, City=@city, Province=@province, PostalCode=@postalCode, EmailAddress=@emailAddress, CreditCardNum=@creditCard OUTPUT inserted.CID where Customer.AccountNumber=@accountNumber";
 
 
-                        using (SqlCommand getCidCommand = new SqlCommand(getCidQuery, connection))
+                        using (SqlCommand cmd = new SqlCommand(updateCustomer, connection))
                         {
-                            getCidCommand.Parameters.AddWithValue("@accountNumber", customerToEdit.accountNumber);
+                            cmd.Parameters.AddWithValue("@firstName", FirstNameInput.Text);
+                            cmd.Parameters.AddWithValue("@lastName", LastNameInput.Text);
+                            cmd.Parameters.AddWithValue("@address", AddressInput.Text);
+                            cmd.Parameters.AddWithValue("@city", CityInput.Text);
+                            cmd.Parameters.AddWithValue("@province", ProvinceInput.Text);
+                            cmd.Parameters.AddWithValue("@postalCode", PostalCodeInput.Text);
+                            cmd.Parameters.AddWithValue("@emailAddress", EmailInput.Text);
+                            cmd.Parameters.AddWithValue("@creditCard", creditCardInput.Text);
+                            cmd.Parameters.AddWithValue("@accountNumber", customerToEdit.accountNumber);
 
-                            cid = getCidCommand.ExecuteScalar();
-                            if (cid == null)
+                            using (SqlDataReader reader = cmd.ExecuteReader())
                             {
-                                MessageBox.Show("Customer ID not found!");
-                                return; // Exit if no matching customer
+                                if (reader.Read())
+                                {
+                                    cid = reader[0]; // Get the first column (CID) from the result
+                                    MessageBox.Show($"Customer CID: {cid}");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Customer ID not found!");
+                                }
                             }
                         }
 
@@ -138,10 +154,11 @@ namespace movieRental
                                                     PhoneNumberInput2.Text,
                                                     PhoneNumberInput3.Text
                                                 };
-
+                        //MessageBox.Show($"{PhoneNumberInput1.Text}, {PhoneNumberInput2.Text}, {PhoneNumberInput3}");
                         // Insert each new phone number
                         foreach (string newNum in newPhoneNumbers)
                         {
+                            //MessageBox.Show($"neew num = {newNum}");
                             if (!string.IsNullOrEmpty(newNum))
                             {
                                 using (SqlCommand insertCmd = new SqlCommand(insertQuery, connection))

@@ -153,6 +153,11 @@ namespace movieRental
 
 
             }
+
+            else
+            {
+                MessageBox.Show("Fill in Necessary fields: First & Last name, Email");
+            }
         }
 
         private bool fieldValidation()
