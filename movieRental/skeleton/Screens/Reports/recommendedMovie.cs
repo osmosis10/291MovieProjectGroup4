@@ -59,6 +59,7 @@ namespace movieRental
                         {
                             customers.Add(new Customer()
                             {
+                                id = myReader.GetInt32(0),
                                 firstName = myReader.GetString(1),
                                 lastName = myReader.GetString(2),
                                 accountNumber = myReader.GetInt32(7),
@@ -77,13 +78,33 @@ namespace movieRental
             return customers;
         }
 
-        private List<Movie>? retrieveRecommendedMovies(int actorID)
+        private List<ReportOneContainer>? retrieveRecommendedMovies(int customerID)
         {
-            var movies = new List<Movie>();
+            var movies = new List<ReportOneContainer>();
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                String query = "SELECT * FROM Movie"; // Insert Query here
+                String query =
+@$"with userGenreAvgs as (
+    select Movie.Type, AVG(MovieRating) as avge
+    from Ordered, Movie
+    where CustomerID = '{customerID}' and Ordered.MovieID = Movie.MID 
+    group by Movie.Type
+), userHighestGenre as (
+    select Type
+    from userGenreAvgs
+    where avge = (select max(avge) from userGenreAvgs)
+)
+select count(*) as revCount, AVG(MovieRating) as avgRate, Name, Type
+from Movie, Ordered
+where Movie.MID = Ordered.MovieID and Type in (select * from userHighestGenre) and MovieID not in (select MovieID from Ordered where CustomerID = '{customerID}')--again, replace 101 with variable specifying user id
+group by Name, Type
+order by avgRate desc, revCount desc";
+
+
+
+
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
 
@@ -93,11 +114,12 @@ namespace movieRental
 
                         while (myReader.Read())
                         {
-                            movies.Add(new Movie()
+                            movies.Add(new ReportOneContainer()
                             {
-                                title = myReader.GetString(1),
-                                genre = myReader.GetString(2),
-                                totalCopies = myReader.GetInt32(4),
+                                Title = myReader.GetString(2),
+                                Genre = myReader.GetString(3),
+                                AverageRating = myReader.GetInt32(1),
+                                ReviewCount = myReader.GetInt32(0)
                             });
 
                         }
@@ -135,19 +157,25 @@ namespace movieRental
             recommendedMovieDataView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = "Title",
-                DataPropertyName = "title",
+                DataPropertyName = "Title",
             });
 
             recommendedMovieDataView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = "Genre",
-                DataPropertyName = "genre",
+                DataPropertyName = "Genre",
             });
 
             recommendedMovieDataView.Columns.Add(new DataGridViewTextBoxColumn
             {
-                HeaderText = "Total Copies",
-                DataPropertyName = "totalCopies",
+                HeaderText = "Average Rating",
+                DataPropertyName = "AverageRating",
+            });
+
+            recommendedMovieDataView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Review Count",
+                DataPropertyName = "ReviewCount",
             });
         }
 
@@ -242,6 +270,14 @@ namespace movieRental
                     recomendedMovieLabel.Text = $"Recommended for {selectedCustomer.fullName}:";
                 }
             }
+        }
+
+        private void customerSearch__TextChanged(object sender, EventArgs e)
+        {
+            var temp = Customers.Where(
+            c => c.fullName.Contains(customerSearch.Text))
+            .ToList();
+            customerDataView.DataSource = temp;
         }
     }
 }

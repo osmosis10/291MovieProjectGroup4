@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using System.Configuration;
 using System.Drawing.Text;
 using System.Globalization;
+using System.Security.Cryptography;
 
 namespace movieRental
 {
@@ -21,7 +22,7 @@ namespace movieRental
         private string connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
 
         // Data
-        public List<Employee> employees;
+        public List<ReportThreeContainer> employees;
 
         public prolificEmployee()
         {
@@ -31,13 +32,21 @@ namespace movieRental
         }
 
         // Data Source
-        private List<Employee>? retrieveTopEmployeesOfMonth(string selectedMonth)
+        private List<ReportThreeContainer>? retrieveTopEmployeesOfMonth(string selectedMonth)
         {
-            var employees = new List<Employee>();
+            var employees = new List<ReportThreeContainer>();
+            int month = ConvertMonthToInt(selectedMonth);
+            if (month == -1) return employees;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                String query = "SELECT * FROM Employee"; // Insert Query here
+                String query =
+@$"select Employee.EID, Employee.FirstName, Employee.FamilyName, count(Ordered.EmployeeID) as countEmp
+from Employee, Ordered
+where Employee.EID = Ordered.EmployeeID and Month(CheckOutDate) = '{month}' and year(CheckOutDate) = '2024'
+group by EID, FirstName, FamilyName
+order by countEmp desc";
+
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
 
@@ -47,12 +56,12 @@ namespace movieRental
 
                         while (myReader.Read())
                         {
-                            employees.Add(new Employee()
+                            employees.Add(new ReportThreeContainer()
                             {
-                                socialSecurityNum = myReader.GetString(1),
-                                firstName = myReader.GetString(2),
-                                lastName = myReader.GetString(3),
-                                startDate = myReader.GetDateTime(10),
+                                id = myReader.GetInt32(0),
+                                FirstName = myReader.GetString(1),
+                                LastName = myReader.GetString(2),
+                                orders = myReader.GetInt32(3)
                             });
 
                         }
@@ -66,6 +75,27 @@ namespace movieRental
                 }
             }
             return employees;
+        }
+
+        // Date string to int
+        private int ConvertMonthToInt(string month)
+        {
+            switch (month)
+            {
+                case "January": return 1;
+                case "February": return 2;
+                case "March": return 3;
+                case "April": return 4;
+                case "May": return 5;
+                case "June": return 6;
+                case "July": return 7;
+                case "August": return 8;
+                case "September": return 9;
+                case "October": return 10;
+                case "November": return 11;
+                case "December": return 12;
+                default: return -1;
+            }
         }
 
         private void prolificEmployee_Load(object sender, EventArgs e)
@@ -134,8 +164,14 @@ namespace movieRental
 
             topEmployeeDataView.Columns.Add(new DataGridViewTextBoxColumn
             {
-                HeaderText = "Start Date",
-                DataPropertyName = "startDate",
+                HeaderText = "Employee ID",
+                DataPropertyName = "id",
+            });
+
+            topEmployeeDataView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Orders Completed",
+                DataPropertyName = "orders",
             });
         }
 

@@ -489,6 +489,7 @@
             actorSearch.Size = new Size(488, 39);
             actorSearch.TabIndex = 0;
             actorSearch.UnderlinedStyle = false;
+            actorSearch._TextChanged += actorSearch__TextChanged;
             // 
             // tableLayoutPanel7
             // 

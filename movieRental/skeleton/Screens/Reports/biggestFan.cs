@@ -12,6 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Xml.Linq;
 using System.Configuration;
 using System.Drawing.Text;
+using System.Security.Cryptography;
 
 namespace movieRental
 {
@@ -21,7 +22,7 @@ namespace movieRental
 
         //Data
         public List<Customer> Customers;
-        public List<Actor> Actors; 
+        public List<Actor> Actors;
 
         public biggestFan()
         {
@@ -79,13 +80,19 @@ namespace movieRental
             return actors;
         }
 
-        private List<Customer>? retrieveActorFans(int actorID)
+        private List<ReportFourContainer>? retrieveActorFans(int actorID)
         {
-            var customers = new List<Customer>();
+            var customers = new List<ReportFourContainer>();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                String query = "SELECT * FROM Customer"; // Insert Query here
+                String query =
+@$"select count(*) as reviewAmt, avg(CAST(Rating AS FLOAT)) as avgRating, CID, concat(Customer.FirstName, ' ', Customer.FamilyName) as fullName
+from ActorReview, Customer, Ordered
+where ActorID = {actorID} and ActorReview.OrderID = Ordered.OID and Ordered.CustomerID = Customer.CID
+group by CID, Customer.FirstName, Customer.FamilyName
+order by avg(Rating) desc, count(*) desc;";
+
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
 
@@ -95,11 +102,12 @@ namespace movieRental
 
                         while (myReader.Read())
                         {
-                            customers.Add(new Customer()
+                            customers.Add(new ReportFourContainer()
                             {
-                                firstName = myReader.GetString(1),
-                                lastName = myReader.GetString(2),
-                                accountNumber = myReader.GetInt32(7),
+                                reviewAmount = myReader.GetInt32(0),
+                                avgRating = myReader.GetDouble(1),
+                                id = myReader.GetInt32(2),
+                                fullName = myReader.GetString(3)
                             });
 
                         }
@@ -128,12 +136,18 @@ namespace movieRental
             actorDataView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = "Date of Birth",
-                DataPropertyName = "dateOfBirth", 
+                DataPropertyName = "dateOfBirth",
             });
         }
 
         private void addFanAttributeColoumns()
         {
+
+            biggestFanDataView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "ID",
+                DataPropertyName = "id",
+            });
 
             biggestFanDataView.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -143,8 +157,14 @@ namespace movieRental
 
             biggestFanDataView.Columns.Add(new DataGridViewTextBoxColumn
             {
-                HeaderText = "Account Number",
-                DataPropertyName = "accountNumber",
+                HeaderText = "Average Rating",
+                DataPropertyName = "avgRating",
+            });
+
+            biggestFanDataView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Review Amount",
+                DataPropertyName = "reviewAmount",
             });
         }
 
@@ -238,6 +258,14 @@ namespace movieRental
                     biggestFanLabel.Text = $"{selectedActor.fullName}'s Biggest Fans:";
                 }
             }
+        }
+
+        private void actorSearch__TextChanged(object sender, EventArgs e)
+        {
+            var temp = Actors.Where(
+            c => c.fullName.Contains(actorSearch.Text))
+            .ToList();
+            actorDataView.DataSource = temp;
         }
     }
 }

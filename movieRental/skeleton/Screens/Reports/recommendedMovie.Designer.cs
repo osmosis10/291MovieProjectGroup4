@@ -82,23 +82,23 @@
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel1.AutoSize = true;
             tableLayoutPanel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             tableLayoutPanel1.BackgroundImageLayout = ImageLayout.Stretch;
             tableLayoutPanel1.ColumnCount = 3;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 8F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 7F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 8F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 7F));
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 1);
-            tableLayoutPanel1.Location = new Point(6, 10);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Margin = new Padding(0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 3;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 8F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 6F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 8F));
-            tableLayoutPanel1.Size = new Size(1295, 792);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 6F));
+            tableLayoutPanel1.Size = new Size(1301, 805);
             tableLayoutPanel1.TabIndex = 8;
             // 
             // tableLayoutPanel2
@@ -106,17 +106,17 @@
             tableLayoutPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel2.AutoSize = true;
             tableLayoutPanel2.ColumnCount = 3;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 8F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 88F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 7F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.Controls.Add(roundedPanel7, 0, 0);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 2, 0);
-            tableLayoutPanel2.Location = new Point(8, 8);
+            tableLayoutPanel2.Location = new Point(7, 6);
             tableLayoutPanel2.Margin = new Padding(0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Size = new Size(1279, 776);
+            tableLayoutPanel2.Size = new Size(1287, 793);
             tableLayoutPanel2.TabIndex = 0;
             // 
             // roundedPanel7
@@ -137,13 +137,13 @@
             roundedPanel7.Margin = new Padding(0);
             roundedPanel7.Name = "roundedPanel7";
             roundedPanel7.RowCount = 6;
-            roundedPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 120F));
-            roundedPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 120F));
-            roundedPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 120F));
-            roundedPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 120F));
+            roundedPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 90F));
+            roundedPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 90F));
+            roundedPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 90F));
+            roundedPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 90F));
             roundedPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            roundedPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 120F));
-            roundedPanel7.Size = new Size(100, 776);
+            roundedPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 90F));
+            roundedPanel7.Size = new Size(88, 793);
             roundedPanel7.TabIndex = 9;
             // 
             // LogOutContainer
@@ -153,22 +153,22 @@
             LogOutContainer.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             LogOutContainer.Controls.Add(LogOutButton, 0, 0);
             LogOutContainer.Controls.Add(LogoutLabel, 0, 1);
-            LogOutContainer.Location = new Point(10, 671);
+            LogOutContainer.Location = new Point(9, 714);
+            LogOutContainer.Margin = new Padding(3, 2, 3, 2);
             LogOutContainer.Name = "LogOutContainer";
             LogOutContainer.RowCount = 2;
             LogOutContainer.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             LogOutContainer.RowStyles.Add(new RowStyle());
-            LogOutContainer.Size = new Size(80, 90);
+            LogOutContainer.Size = new Size(70, 68);
             LogOutContainer.TabIndex = 4;
             // 
             // LogOutButton
             // 
             LogOutButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             LogOutButton.Image = Properties.Resources.logout;
-            LogOutButton.Location = new Point(3, 4);
-            LogOutButton.Margin = new Padding(3, 4, 3, 4);
+            LogOutButton.Location = new Point(3, 3);
             LogOutButton.Name = "LogOutButton";
-            LogOutButton.Size = new Size(74, 52);
+            LogOutButton.Size = new Size(64, 40);
             LogOutButton.SizeMode = PictureBoxSizeMode.CenterImage;
             LogOutButton.TabIndex = 4;
             LogOutButton.TabStop = false;
@@ -177,9 +177,9 @@
             // 
             LogoutLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             LogoutLabel.ForeColor = SystemColors.ButtonFace;
-            LogoutLabel.Location = new Point(3, 60);
+            LogoutLabel.Location = new Point(3, 46);
             LogoutLabel.Name = "LogoutLabel";
-            LogoutLabel.Size = new Size(74, 30);
+            LogoutLabel.Size = new Size(64, 22);
             LogoutLabel.TabIndex = 5;
             LogoutLabel.Text = "Logout";
             LogoutLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -196,22 +196,22 @@
             ReportsContainer.Controls.Add(ReportsButton, 0, 0);
             ReportsContainer.Controls.Add(ReportLabel, 0, 1);
             ReportsContainer.ForeColor = Color.Transparent;
-            ReportsContainer.Location = new Point(10, 377);
+            ReportsContainer.Location = new Point(9, 283);
+            ReportsContainer.Margin = new Padding(3, 2, 3, 2);
             ReportsContainer.Name = "ReportsContainer";
             ReportsContainer.RowCount = 2;
             ReportsContainer.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             ReportsContainer.RowStyles.Add(new RowStyle());
-            ReportsContainer.Size = new Size(80, 85);
+            ReportsContainer.Size = new Size(70, 64);
             ReportsContainer.TabIndex = 8;
             // 
             // ReportsButton
             // 
             ReportsButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ReportsButton.Image = Properties.Resources.report;
-            ReportsButton.Location = new Point(3, 4);
-            ReportsButton.Margin = new Padding(3, 4, 3, 4);
+            ReportsButton.Location = new Point(3, 3);
             ReportsButton.Name = "ReportsButton";
-            ReportsButton.Size = new Size(74, 52);
+            ReportsButton.Size = new Size(64, 39);
             ReportsButton.SizeMode = PictureBoxSizeMode.CenterImage;
             ReportsButton.TabIndex = 0;
             ReportsButton.TabStop = false;
@@ -221,9 +221,9 @@
             // 
             ReportLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ReportLabel.ForeColor = SystemColors.Control;
-            ReportLabel.Location = new Point(3, 60);
+            ReportLabel.Location = new Point(3, 45);
             ReportLabel.Name = "ReportLabel";
-            ReportLabel.Size = new Size(74, 25);
+            ReportLabel.Size = new Size(64, 19);
             ReportLabel.TabIndex = 1;
             ReportLabel.Text = "Reports";
             ReportLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -241,22 +241,22 @@
             CustomersContainer.Controls.Add(CustomersButton, 0, 0);
             CustomersContainer.Controls.Add(CustomerLabel, 0, 1);
             CustomersContainer.ForeColor = Color.Transparent;
-            CustomersContainer.Location = new Point(10, 17);
+            CustomersContainer.Location = new Point(9, 13);
+            CustomersContainer.Margin = new Padding(3, 2, 3, 2);
             CustomersContainer.Name = "CustomersContainer";
             CustomersContainer.RowCount = 2;
             CustomersContainer.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             CustomersContainer.RowStyles.Add(new RowStyle());
-            CustomersContainer.Size = new Size(80, 85);
+            CustomersContainer.Size = new Size(70, 64);
             CustomersContainer.TabIndex = 5;
             // 
             // CustomersButton
             // 
             CustomersButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             CustomersButton.Image = Properties.Resources.customers;
-            CustomersButton.Location = new Point(3, 4);
-            CustomersButton.Margin = new Padding(3, 4, 3, 4);
+            CustomersButton.Location = new Point(3, 3);
             CustomersButton.Name = "CustomersButton";
-            CustomersButton.Size = new Size(74, 52);
+            CustomersButton.Size = new Size(64, 39);
             CustomersButton.SizeMode = PictureBoxSizeMode.CenterImage;
             CustomersButton.TabIndex = 0;
             CustomersButton.TabStop = false;
@@ -266,9 +266,9 @@
             // 
             CustomerLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             CustomerLabel.ForeColor = SystemColors.Control;
-            CustomerLabel.Location = new Point(3, 60);
+            CustomerLabel.Location = new Point(3, 45);
             CustomerLabel.Name = "CustomerLabel";
-            CustomerLabel.Size = new Size(74, 25);
+            CustomerLabel.Size = new Size(64, 19);
             CustomerLabel.TabIndex = 1;
             CustomerLabel.Text = "Customers";
             CustomerLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -285,22 +285,22 @@
             RentalContainer.Controls.Add(RentalButton, 0, 0);
             RentalContainer.Controls.Add(RentalLabel, 0, 1);
             RentalContainer.ForeColor = Color.Transparent;
-            RentalContainer.Location = new Point(10, 257);
+            RentalContainer.Location = new Point(9, 193);
+            RentalContainer.Margin = new Padding(3, 2, 3, 2);
             RentalContainer.Name = "RentalContainer";
             RentalContainer.RowCount = 2;
             RentalContainer.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             RentalContainer.RowStyles.Add(new RowStyle());
-            RentalContainer.Size = new Size(80, 85);
+            RentalContainer.Size = new Size(70, 64);
             RentalContainer.TabIndex = 7;
             // 
             // RentalButton
             // 
             RentalButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             RentalButton.Image = Properties.Resources.rental;
-            RentalButton.Location = new Point(3, 4);
-            RentalButton.Margin = new Padding(3, 4, 3, 4);
+            RentalButton.Location = new Point(3, 3);
             RentalButton.Name = "RentalButton";
-            RentalButton.Size = new Size(74, 52);
+            RentalButton.Size = new Size(64, 39);
             RentalButton.SizeMode = PictureBoxSizeMode.CenterImage;
             RentalButton.TabIndex = 0;
             RentalButton.TabStop = false;
@@ -310,9 +310,9 @@
             // 
             RentalLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             RentalLabel.ForeColor = SystemColors.Control;
-            RentalLabel.Location = new Point(3, 60);
+            RentalLabel.Location = new Point(3, 45);
             RentalLabel.Name = "RentalLabel";
-            RentalLabel.Size = new Size(74, 25);
+            RentalLabel.Size = new Size(64, 19);
             RentalLabel.TabIndex = 1;
             RentalLabel.Text = "Rental";
             RentalLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -329,22 +329,22 @@
             MoviesContainer.Controls.Add(MovieButton, 0, 0);
             MoviesContainer.Controls.Add(MovieLabel, 0, 1);
             MoviesContainer.ForeColor = Color.Transparent;
-            MoviesContainer.Location = new Point(10, 137);
+            MoviesContainer.Location = new Point(9, 103);
+            MoviesContainer.Margin = new Padding(3, 2, 3, 2);
             MoviesContainer.Name = "MoviesContainer";
             MoviesContainer.RowCount = 2;
             MoviesContainer.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             MoviesContainer.RowStyles.Add(new RowStyle());
-            MoviesContainer.Size = new Size(80, 85);
+            MoviesContainer.Size = new Size(70, 64);
             MoviesContainer.TabIndex = 6;
             // 
             // MovieButton
             // 
             MovieButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             MovieButton.Image = Properties.Resources.movies;
-            MovieButton.Location = new Point(3, 4);
-            MovieButton.Margin = new Padding(3, 4, 3, 4);
+            MovieButton.Location = new Point(3, 3);
             MovieButton.Name = "MovieButton";
-            MovieButton.Size = new Size(74, 52);
+            MovieButton.Size = new Size(64, 39);
             MovieButton.SizeMode = PictureBoxSizeMode.CenterImage;
             MovieButton.TabIndex = 0;
             MovieButton.TabStop = false;
@@ -354,9 +354,9 @@
             // 
             MovieLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             MovieLabel.ForeColor = SystemColors.Control;
-            MovieLabel.Location = new Point(3, 60);
+            MovieLabel.Location = new Point(3, 45);
             MovieLabel.Name = "MovieLabel";
-            MovieLabel.Size = new Size(74, 25);
+            MovieLabel.Size = new Size(64, 19);
             MovieLabel.TabIndex = 1;
             MovieLabel.Text = "Movies";
             MovieLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -369,14 +369,14 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel3.Controls.Add(roundedPanel1, 0, 0);
             tableLayoutPanel3.Controls.Add(roundedPanel2, 0, 2);
-            tableLayoutPanel3.Location = new Point(108, 0);
+            tableLayoutPanel3.Location = new Point(95, 0);
             tableLayoutPanel3.Margin = new Padding(0);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 3;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 8F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 6F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.Size = new Size(1171, 776);
+            tableLayoutPanel3.Size = new Size(1192, 793);
             tableLayoutPanel3.TabIndex = 4;
             // 
             // roundedPanel1
@@ -396,7 +396,7 @@
             roundedPanel1.Name = "roundedPanel1";
             roundedPanel1.RowCount = 1;
             roundedPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            roundedPanel1.Size = new Size(1171, 80);
+            roundedPanel1.Size = new Size(1192, 60);
             roundedPanel1.TabIndex = 7;
             // 
             // EmpTabName
@@ -405,10 +405,10 @@
             EmpTabName.AutoSize = true;
             EmpTabName.Font = new Font("Segoe UI", 21.7815132F, FontStyle.Bold, GraphicsUnit.Point, 0);
             EmpTabName.ForeColor = SystemColors.Control;
-            EmpTabName.Location = new Point(103, 3);
-            EmpTabName.Margin = new Padding(3);
+            EmpTabName.Location = new Point(91, 2);
+            EmpTabName.Margin = new Padding(3, 2, 3, 2);
             EmpTabName.Name = "EmpTabName";
-            EmpTabName.Size = new Size(1065, 74);
+            EmpTabName.Size = new Size(1098, 56);
             EmpTabName.TabIndex = 0;
             EmpTabName.Text = "Recommened Movie for Customer";
             EmpTabName.TextAlign = ContentAlignment.MiddleLeft;
@@ -417,9 +417,10 @@
             // 
             SectionIcon.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             SectionIcon.Image = Properties.Resources.report;
-            SectionIcon.Location = new Point(3, 3);
+            SectionIcon.Location = new Point(3, 2);
+            SectionIcon.Margin = new Padding(3, 2, 3, 2);
             SectionIcon.Name = "SectionIcon";
-            SectionIcon.Size = new Size(94, 74);
+            SectionIcon.Size = new Size(82, 56);
             SectionIcon.SizeMode = PictureBoxSizeMode.CenterImage;
             SectionIcon.TabIndex = 1;
             SectionIcon.TabStop = false;
@@ -432,18 +433,18 @@
             roundedPanel2.BorderRadius = 15;
             roundedPanel2.BorderSize = 0;
             roundedPanel2.ColumnCount = 3;
-            roundedPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 16F));
+            roundedPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 14F));
             roundedPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            roundedPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 16F));
+            roundedPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 14F));
             roundedPanel2.Controls.Add(tableLayoutPanel5, 1, 1);
-            roundedPanel2.Location = new Point(0, 88);
+            roundedPanel2.Location = new Point(0, 66);
             roundedPanel2.Margin = new Padding(0);
             roundedPanel2.Name = "roundedPanel2";
             roundedPanel2.RowCount = 3;
-            roundedPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 16F));
+            roundedPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 12F));
             roundedPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            roundedPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 16F));
-            roundedPanel2.Size = new Size(1171, 688);
+            roundedPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 12F));
+            roundedPanel2.Size = new Size(1192, 727);
             roundedPanel2.TabIndex = 8;
             // 
             // tableLayoutPanel5
@@ -451,19 +452,20 @@
             tableLayoutPanel5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel5.ColumnCount = 3;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 16F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 14F));
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.Controls.Add(customerSearch, 0, 0);
             tableLayoutPanel5.Controls.Add(tableLayoutPanel7, 2, 0);
             tableLayoutPanel5.Controls.Add(customerDataView, 0, 2);
             tableLayoutPanel5.Controls.Add(recommendedMovieDataView, 2, 2);
-            tableLayoutPanel5.Location = new Point(19, 19);
+            tableLayoutPanel5.Location = new Point(17, 14);
+            tableLayoutPanel5.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 3;
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 16F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 12F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel5.Size = new Size(1133, 650);
+            tableLayoutPanel5.Size = new Size(1158, 699);
             tableLayoutPanel5.TabIndex = 7;
             // 
             // customerSearch
@@ -476,17 +478,18 @@
             customerSearch.BorderSize = 2;
             customerSearch.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             customerSearch.ForeColor = Color.White;
-            customerSearch.Location = new Point(0, 4);
+            customerSearch.Location = new Point(0, 3);
             customerSearch.Margin = new Padding(0);
             customerSearch.Multiline = false;
             customerSearch.Name = "customerSearch";
-            customerSearch.Padding = new Padding(20, 15, 20, 15);
+            customerSearch.Padding = new Padding(18, 11, 18, 11);
             customerSearch.PasswordChar = false;
             customerSearch.PlaceholderColor = Color.DarkGray;
             customerSearch.PlaceholderText = "Search for a customer";
-            customerSearch.Size = new Size(558, 51);
+            customerSearch.Size = new Size(572, 39);
             customerSearch.TabIndex = 0;
             customerSearch.UnderlinedStyle = false;
+            customerSearch._TextChanged += customerSearch__TextChanged;
             // 
             // tableLayoutPanel7
             // 
@@ -495,13 +498,13 @@
             tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 69.32953F));
             tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30.6704712F));
             tableLayoutPanel7.Controls.Add(recomendedMovieLabel, 0, 0);
-            tableLayoutPanel7.Location = new Point(574, 0);
+            tableLayoutPanel7.Location = new Point(586, 0);
             tableLayoutPanel7.Margin = new Padding(0);
             tableLayoutPanel7.Name = "tableLayoutPanel7";
             tableLayoutPanel7.RowCount = 1;
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel7.Size = new Size(559, 60);
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+            tableLayoutPanel7.Size = new Size(572, 45);
             tableLayoutPanel7.TabIndex = 1;
             // 
             // recomendedMovieLabel
@@ -510,9 +513,9 @@
             recomendedMovieLabel.AutoSize = true;
             recomendedMovieLabel.Font = new Font("Segoe UI", 13.915966F);
             recomendedMovieLabel.ForeColor = Color.White;
-            recomendedMovieLabel.Location = new Point(3, 14);
+            recomendedMovieLabel.Location = new Point(3, 10);
             recomendedMovieLabel.Name = "recomendedMovieLabel";
-            recomendedMovieLabel.Size = new Size(381, 31);
+            recomendedMovieLabel.Size = new Size(390, 25);
             recomendedMovieLabel.TabIndex = 22;
             recomendedMovieLabel.Text = "Recommended for X:";
             // 
@@ -522,11 +525,11 @@
             customerDataView.BackgroundColor = Color.FromArgb(40, 44, 91);
             customerDataView.BorderStyle = BorderStyle.None;
             customerDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            customerDataView.Location = new Point(0, 84);
-            customerDataView.Margin = new Padding(0, 8, 0, 0);
+            customerDataView.Location = new Point(0, 63);
+            customerDataView.Margin = new Padding(0, 6, 0, 0);
             customerDataView.Name = "customerDataView";
             customerDataView.RowHeadersWidth = 51;
-            customerDataView.Size = new Size(558, 566);
+            customerDataView.Size = new Size(572, 636);
             customerDataView.TabIndex = 5;
             customerDataView.CellContentClick += customerDataView_CellContentClick;
             // 
@@ -536,21 +539,20 @@
             recommendedMovieDataView.BackgroundColor = Color.FromArgb(40, 44, 91);
             recommendedMovieDataView.BorderStyle = BorderStyle.None;
             recommendedMovieDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            recommendedMovieDataView.Location = new Point(574, 84);
-            recommendedMovieDataView.Margin = new Padding(0, 8, 0, 0);
+            recommendedMovieDataView.Location = new Point(586, 63);
+            recommendedMovieDataView.Margin = new Padding(0, 6, 0, 0);
             recommendedMovieDataView.Name = "recommendedMovieDataView";
             recommendedMovieDataView.RowHeadersWidth = 51;
-            recommendedMovieDataView.Size = new Size(559, 566);
+            recommendedMovieDataView.Size = new Size(572, 636);
             recommendedMovieDataView.TabIndex = 6;
             // 
             // recommendedMovie
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = Color.FromArgb(25, 26, 63);
             Controls.Add(tableLayoutPanel1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "recommendedMovie";
             Size = new Size(1301, 805);
             Load += recommendedMovie_Load;

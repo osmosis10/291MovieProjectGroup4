@@ -13,6 +13,8 @@ using System.Xml.Linq;
 using System.Configuration;
 using System.Drawing.Text;
 using System.Globalization;
+using System.Windows.Forms;
+using System.Security.Cryptography;
 
 namespace movieRental
 {
@@ -21,7 +23,7 @@ namespace movieRental
         private string connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
 
         // Data
-        public List<Movie> Movies;
+        public List<ReportTwoContainer> Movies;
 
         public grossingMovies()
         {
@@ -35,13 +37,28 @@ namespace movieRental
         }
 
         // Data Source
-        private List<Movie>? retrieveTopMoviesOfMonth(string selectedMonth)
+        private List<ReportTwoContainer>? retrieveTopMoviesOfMonth(string selectedMonth)
         {
-            var movies = new List<Movie>();
+            var movies = new List<ReportTwoContainer>();
+            int month = ConvertMonthToInt(selectedMonth);
+            if (month == -1) return movies;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                String query = "SELECT * FROM Movie"; // Insert Query here
+                String query = 
+                @$"
+with profits as (
+    select count(Movie.MID) * DistributionFee as profit, Movie.MID, Name
+    from Ordered, Movie
+    where Ordered.MovieID = Movie.MID and month(CheckOutDate) = '{month}' and year(CheckOutDate) = '2024'
+group by Movie.MID, DistributionFee, Name
+)
+select Name, profit
+from Ordered, profits
+where profits.MID = Ordered.MovieID--replace month and year
+group by Name, profit
+order by profit desc";
+
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
 
@@ -51,11 +68,10 @@ namespace movieRental
 
                         while (myReader.Read())
                         {
-                            movies.Add(new Movie()
+                            movies.Add(new ReportTwoContainer()
                             {
-                                title = myReader.GetString(1),
-                                genre = myReader.GetString(2),
-                                totalCopies = myReader.GetInt32(4),
+                                Name = myReader.GetString(0),
+                                Profit = myReader.GetDecimal(1)
                             });
 
                         }
@@ -69,6 +85,28 @@ namespace movieRental
                 }
             }
             return movies;
+
+        }
+
+        // Date string to int
+        private int ConvertMonthToInt(string month)
+        {
+            switch(month)
+            {
+                case "January": return 1;
+                case "February": return 2;
+                case "March": return 3;
+                case "April": return 4;
+                case "May": return 5;
+                case "June": return 6;
+                case "July": return 7;
+                case "August": return 8;
+                case "September": return 9;
+                case "October": return 10;
+                case "November": return 11;
+                case "December": return 12;
+                default: return -1;
+            }
         }
 
         // Switch Screen
@@ -127,13 +165,13 @@ namespace movieRental
             topMovieDataView.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = "Title",
-                DataPropertyName = "title",
+                DataPropertyName = "Name",
             });
 
             topMovieDataView.Columns.Add(new DataGridViewTextBoxColumn
             {
-                HeaderText = "Genre",
-                DataPropertyName = "genre",
+                HeaderText = "Profit",
+                DataPropertyName = "Profit",
             });
         }
 

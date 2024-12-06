@@ -12,6 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Xml.Linq;
 using System.Configuration;
 using System.Drawing.Text;
+using System.Security.Cryptography;
 
 namespace movieRental
 {
@@ -20,10 +21,10 @@ namespace movieRental
         private string connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
 
         //Data
-        public List<Movie> actionMovies;
-        public List<Movie> comedyMovies;
-        public List<Movie> dramaMovies;
-        public List<Movie> foreignMovies;
+        public List<ReportFiveContainer> actionMovies;
+        public List<ReportFiveContainer> comedyMovies;
+        public List<ReportFiveContainer> dramaMovies;
+        public List<ReportFiveContainer> foreignMovies;
 
         public highestRatedGenreMovie()
         {
@@ -53,13 +54,19 @@ namespace movieRental
         }
 
         // Data Source
-        private List<Movie>? retrieveMovies(string genre)
+        private List<ReportFiveContainer>? retrieveMovies(string genre)
         {
-            var movies = new List<Movie>();
+            var movies = new List<ReportFiveContainer>();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                String query = $"SELECT * FROM Movie WHERE Type = '{genre}'";
+                String query =
+@$"select Name, Type, count(*) as reviewCount, AVG(CAST(MovieRating AS FLOAT)) as avgRating
+from Movie, Ordered
+where Movie.MID = Ordered.MovieID and Type = '{genre}'
+group by Name, Type
+order by avgRating desc, count(*) desc;";
+
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
 
@@ -69,9 +76,11 @@ namespace movieRental
 
                         while (myReader.Read())
                         {
-                            movies.Add(new Movie()
+                            movies.Add(new ReportFiveContainer()
                             {
-                                title = myReader.GetString(1),
+                                title = myReader.GetString(0),
+                                reviewCount = myReader.GetInt32(2),
+                                avgRating = myReader.GetDouble(3),
                             });
 
                         }
@@ -136,6 +145,54 @@ namespace movieRental
             {
                 HeaderText = "Title",
                 DataPropertyName = "title",
+            });
+            
+            topActionDataView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Review Count",
+                DataPropertyName = "reviewCount",
+            });
+
+            topComedyDataView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Review Count",
+                DataPropertyName = "reviewCount",
+            });
+
+            topDramaDataView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Review Count",
+                DataPropertyName = "reviewCount",
+            });
+
+            topForeignDataView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Review Count",
+                DataPropertyName = "reviewCount",
+            });
+            //
+            topActionDataView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Average Rating",
+                DataPropertyName = "avgRating",
+            });
+
+            topComedyDataView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Average Rating",
+                DataPropertyName = "avgRating",
+            });
+
+            topDramaDataView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Average Rating",
+                DataPropertyName = "avgRating",
+            });
+
+            topForeignDataView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Average Rating",
+                DataPropertyName = "avgRating",
             });
         }
 
