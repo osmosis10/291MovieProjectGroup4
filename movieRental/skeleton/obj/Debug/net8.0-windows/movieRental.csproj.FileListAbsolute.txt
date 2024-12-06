@@ -135,3 +135,4 @@ C:\Users\moses\Desktop\291MovieProjectGroup4\movieRental\skeleton\obj\Debug\net8
 C:\Users\moses\Desktop\291MovieProjectGroup4\movieRental\skeleton\obj\Debug\net8.0-windows\movieRental.recommendedMovie.resources
 F:\Development\Coding\.School\CMPT 291\movieRental\skeleton\bin\Debug\net8.0-windows\App.config
 F:\Development\Coding\.School\CMPT 291\movieRental\skeleton\bin\Debug\net8.0-windows\movieRental.dll.config
+C:\Users\moses\Desktop\291MovieProjectGroup4\movieRental\skeleton\obj\Debug\net8.0-windows\movieRental.LoginUserControl.resources
