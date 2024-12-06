@@ -47,7 +47,6 @@
             pictureBox3 = new PictureBox();
             passWord = new CustomControls.RoundedTextBox.RoundedTextBox();
             loginButton = new Button();
-            CreateAccount = new Button();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel6.SuspendLayout();
@@ -67,10 +66,10 @@
             userLabel.AutoSize = true;
             userLabel.Font = new Font("Microsoft Sans Serif", 15.7310925F);
             userLabel.ForeColor = Color.White;
-            userLabel.Location = new Point(37, 16);
+            userLabel.Location = new Point(37, 15);
             userLabel.Margin = new Padding(0);
             userLabel.Name = "userLabel";
-            userLabel.Size = new Size(467, 30);
+            userLabel.Size = new Size(467, 31);
             userLabel.TabIndex = 2;
             userLabel.Text = "Username";
             // 
@@ -80,10 +79,10 @@
             passLabel.AutoSize = true;
             passLabel.Font = new Font("Microsoft Sans Serif", 15.7310925F);
             passLabel.ForeColor = Color.White;
-            passLabel.Location = new Point(37, 16);
+            passLabel.Location = new Point(37, 15);
             passLabel.Margin = new Padding(0);
             passLabel.Name = "passLabel";
-            passLabel.Size = new Size(467, 30);
+            passLabel.Size = new Size(467, 31);
             passLabel.TabIndex = 3;
             passLabel.Text = "Password";
             // 
@@ -107,9 +106,9 @@
             empLabel.Font = new Font("Microsoft Sans Serif", 32.0672226F, FontStyle.Regular, GraphicsUnit.Point, 0);
             empLabel.ForeColor = Color.White;
             empLabel.ImageAlign = ContentAlignment.MiddleLeft;
-            empLabel.Location = new Point(3, 146);
+            empLabel.Location = new Point(3, 144);
             empLabel.Name = "empLabel";
-            empLabel.Size = new Size(405, 61);
+            empLabel.Size = new Size(415, 63);
             empLabel.TabIndex = 6;
             empLabel.Text = "Employee Login";
             // 
@@ -120,7 +119,7 @@
             helpLabel.ForeColor = Color.White;
             helpLabel.Location = new Point(3, 228);
             helpLabel.Name = "helpLabel";
-            helpLabel.Size = new Size(49, 25);
+            helpLabel.Size = new Size(53, 25);
             helpLabel.TabIndex = 7;
             helpLabel.Text = "help";
             // 
@@ -196,7 +195,6 @@
             tableLayoutPanel5.AutoSize = true;
             tableLayoutPanel5.ColumnCount = 1;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel5.Controls.Add(CreateAccount, 0, 3);
             tableLayoutPanel5.Controls.Add(tableLayoutPanel3, 0, 0);
             tableLayoutPanel5.Controls.Add(tableLayoutPanel4, 0, 1);
             tableLayoutPanel5.Controls.Add(loginButton, 0, 2);
@@ -353,21 +351,6 @@
             loginButton.UseVisualStyleBackColor = false;
             loginButton.Click += loginClick;
             // 
-            // CreateAccount
-            // 
-            CreateAccount.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            CreateAccount.BackColor = Color.FromArgb(84, 80, 164);
-            CreateAccount.FlatAppearance.BorderSize = 0;
-            CreateAccount.FlatStyle = FlatStyle.Flat;
-            CreateAccount.ForeColor = Color.White;
-            CreateAccount.Location = new Point(3, 373);
-            CreateAccount.Name = "CreateAccount";
-            CreateAccount.Size = new Size(510, 50);
-            CreateAccount.TabIndex = 18;
-            CreateAccount.Text = "Create an Account";
-            CreateAccount.UseVisualStyleBackColor = false;
-            CreateAccount.Click += CreateAccount_Click;
-            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -420,7 +403,6 @@
         private PictureBox pictureBox3;
         private CustomControls.RoundedTextBox.RoundedTextBox userName;
         private CustomControls.RoundedTextBox.RoundedTextBox passWord;
-        private Button CreateAccount;
         private Button loginButton;
     }
 }

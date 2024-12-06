@@ -36,7 +36,6 @@
             titleLabel = new Label();
             pictureBox1 = new PictureBox();
             tableLayoutPanel5 = new TableLayoutPanel();
-            CreateAccount = new Button();
             tableLayoutPanel3 = new TableLayoutPanel();
             tableLayoutPanel7 = new TableLayoutPanel();
             userLabel = new Label();
@@ -170,7 +169,6 @@
             tableLayoutPanel5.AutoSize = true;
             tableLayoutPanel5.ColumnCount = 1;
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel5.Controls.Add(CreateAccount, 0, 3);
             tableLayoutPanel5.Controls.Add(tableLayoutPanel3, 0, 0);
             tableLayoutPanel5.Controls.Add(tableLayoutPanel4, 0, 1);
             tableLayoutPanel5.Controls.Add(loginButton, 0, 2);
@@ -183,20 +181,6 @@
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 75F));
             tableLayoutPanel5.Size = new Size(516, 436);
             tableLayoutPanel5.TabIndex = 15;
-            // 
-            // CreateAccount
-            // 
-            CreateAccount.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            CreateAccount.BackColor = Color.FromArgb(84, 80, 164);
-            CreateAccount.FlatAppearance.BorderSize = 0;
-            CreateAccount.FlatStyle = FlatStyle.Flat;
-            CreateAccount.ForeColor = Color.White;
-            CreateAccount.Location = new Point(3, 373);
-            CreateAccount.Name = "CreateAccount";
-            CreateAccount.Size = new Size(510, 50);
-            CreateAccount.TabIndex = 18;
-            CreateAccount.Text = "Create an Account";
-            CreateAccount.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel3
             // 
@@ -407,7 +391,6 @@
         private Label titleLabel;
         private PictureBox pictureBox1;
         private TableLayoutPanel tableLayoutPanel5;
-        private Button CreateAccount;
         private TableLayoutPanel tableLayoutPanel3;
         private TableLayoutPanel tableLayoutPanel7;
         private Label userLabel;
